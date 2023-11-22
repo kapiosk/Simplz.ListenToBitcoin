@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simplz.ListenToBitcoin", "Simplz.ListenToBitcoin.csproj", "{56D08928-4FC4-47C4-9F82-58E5C04400DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56D08928-4FC4-47C4-9F82-58E5C04400DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D08928-4FC4-47C4-9F82-58E5C04400DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D08928-4FC4-47C4-9F82-58E5C04400DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D08928-4FC4-47C4-9F82-58E5C04400DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {577689D2-B2B3-44CE-9E45-E1489BCF961B}
+	EndGlobalSection
+EndGlobal
