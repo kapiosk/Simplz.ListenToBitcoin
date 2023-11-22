@@ -15,8 +15,8 @@ internal sealed class BlockchainService : BackgroundService
         client.ReconnectTimeout = TimeSpan.FromSeconds(30);
         client.ReconnectionHappened.Subscribe(info =>
         {
-            client.Send(JsonSerializer.Serialize(new { op = "unconfirmed_sub" }));
-            client.Send(JsonSerializer.Serialize(new { op = "blocks_sub" }));
+            client.Send(JsonSerializer.Serialize(new BaseResponse<object> { Op = "unconfirmed_sub" }, AppJsonSerializerContext.Default.Options));
+            client.Send(JsonSerializer.Serialize(new BaseResponse<object> { Op = "blocks_sub" }, AppJsonSerializerContext.Default.Options));
         });
         await client.Start();
 
@@ -25,18 +25,18 @@ internal sealed class BlockchainService : BackgroundService
             if (msg.MessageType == WebSocketMessageType.Text && msg.Text is not null)
                 try
                 {
-                    var message = JsonSerializer.Deserialize<BaseResponse<object>>(msg.Text);
-                    var text = message?.X?.ToString();
-                    if (message?.Op is not null && text is not null)
-                        switch (message.Op)
+                    var message = JsonSerializer.Deserialize<BaseResponse<object>>(msg.Text, AppJsonSerializerContext.Default.Options);
+                    var text = message?.X.ToString();
+                    if (text is not null)
+                        switch (message?.Op)
                         {
                             case "utx":
-                                var unconfirmed = JsonSerializer.Deserialize<Unconfirmed>(text);
+                                var unconfirmed = JsonSerializer.Deserialize<Unconfirmed>(text, AppJsonSerializerContext.Default.Options);
                                 if (unconfirmed is not null)
                                     Console.WriteLine($"Unconfirmed: {unconfirmed.Hash}");
                                 break;
                             case "block":
-                                var block = JsonSerializer.Deserialize<Block>(text);
+                                var block = JsonSerializer.Deserialize<Block>(text, AppJsonSerializerContext.Default.Options);
                                 if (block is not null)
                                     Console.WriteLine($"Block: {block.Hash}");
                                 break;
