@@ -10,7 +10,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 builder.Services.AddHostedService<BlockchainService>();
 
-var app = builder.Build();
+await using var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
